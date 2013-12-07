@@ -1,0 +1,2 @@
+parentdir="$(dirname "$dir")"
+
