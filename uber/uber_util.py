@@ -1,5 +1,5 @@
 import sys, os
-sys.path.append(os.path.abspath('..'))
+sys.path.append(os.path.abspath(''))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
 import json, time, datetime
 from decimal import *
