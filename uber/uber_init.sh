@@ -1,2 +1,0 @@
-parentdir="$(dirname "$dir")"
-
