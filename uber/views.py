@@ -1,26 +1,13 @@
-#import from django
-from django.http import HttpResponse
-from django.db.models import Sum, Avg
-from django.shortcuts import render, get_object_or_404
-
-#import from python
-import os
-os.environ['TZ'] = "GMT"
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
-import json
-import time
-import datetime
-from datetime import timedelta, datetime
-from decimal import *
-
-#import from app uber
-import city
-from uber.models import TripEvent, UberBase
+from datetime import timedelta
+from uber_util import *
 
 #######################################
 ############ RESTful APIs #############
 #######################################
 
+'''
+Project landing page
+'''
 def index(request):
     return HttpResponse("Hello, world. You're at the uber index.")
 
@@ -49,10 +36,8 @@ def tripCountLastHour(request):
     dtNow = datetime.now()
     utNow = dtNow.strftime("%s")
     utLastHour = (dtNow - timedelta(hours=1)).strftime("%s")
-    
-    result = TripEvent.objects.filter(start_time__gte=utLastHour) \
-                              .filter(start_time__lt=utNow) \
-                              .count()
+
+    result = getTripCountLastHour(utLastHour, utNow)
 
     response['starttime'] = utLastHour
     response['endtime'] = utNow
@@ -138,88 +123,3 @@ def medianDriverRating(request, did):
 
     return makeHttpResponse(response)
 
-
-###############################################
-############ Processing functions #############
-###############################################
-
-'''
-Convert starttime & endtime to unix time
-'''
-def convertDateStringToUnixTime(starttime, endtime):
-    return ( datetime.strptime(starttime, "%Y%m%d").strftime("%s"), datetime.strptime(endtime, "%Y%m%d").strftime("%s") )
-
-def getTripCount(starttime, endtime):
-    
-    result = TripEvent.objects
-
-    if starttime is not None and endtime is not None:
-        ( unixtime_start, unixtime_end ) = convertDateStringToUnixTime(starttime, endtime)
-        result = result.filter(start_time__range=(unixtime_start, unixtime_end))
-
-    return result.count()
-    
-
-def getClientCount(starttime, endtime, finished=False):
-
-    result = TripEvent.objects
-    
-    if finished:
-        now = int(time.time())
-        result = result.filter(start_time__lt=now)
-
-    if starttime is not None and endtime is not None:
-        ( unixtime_start, unixtime_end ) = convertDateStringToUnixTime(starttime, endtime)
-        result = result.filter(start_time__range=(unixtime_start, unixtime_end))
-    
-    return result.values_list('client_id', flat=True).distinct().count()
-
-def getMilesPerClient(cid, starttime, endtime):
-
-    result = TripEvent.objects.filter(client_id=cid)
-
-    if starttime is not None and endtime is not None:
-        ( unixtime_start, unixtime_end ) = convertDateStringToUnixTime(starttime, endtime)
-        result = result.filter(start_time__range=(unixtime_start, unixtime_end))
-
-    return result.values_list('client_id', 'distance') \
-                 .annotate(total_miles=Sum('distance')) \
-                 .values_list('client_id', 'total_miles')
-
-def getFaresInCityResult(ctname, starttime, endtime):
-
-    max_lat = max(city.city_coordinates[ctname][0][0], city.city_coordinates[ctname][1][0])
-    min_lat = min(city.city_coordinates[ctname][0][0], city.city_coordinates[ctname][1][0])
-    max_lng = max(city.city_coordinates[ctname][0][1], city.city_coordinates[ctname][1][1])
-    min_lng = min(city.city_coordinates[ctname][0][1], city.city_coordinates[ctname][1][1])
-
-    result = TripEvent.objects.filter(lat__range=(min_lat, max_lat)) \
-                              .filter(lng__range=(min_lng, max_lng))
-
-    if starttime is not None and endtime is not None:
-        ( unixtime_start, unixtime_end ) = convertDateStringToUnixTime(starttime, endtime)
-        result = result.filter(start_time__range=(unixtime_start, unixtime_end))
-
-    return result.aggregate(Avg('fare'))
-
-def getRecordsByDriver(did, starttime, endtime):
-    result = TripEvent.objects.filter(driver_id=did)
-
-    if starttime is not None and endtime is not None:
-        ( unixtime_start, unixtime_end ) = convertDateStringToUnixTime(starttime, endtime)
-        result = result.filter(start_time__range=(unixtime_start, unixtime_end))
-
-    return result.aggregate(Avg('rating'))
-
-def convertResultToDict(result):
-    d = {}
-    for key, value in result:
-        if type(value) == Decimal:
-            d[key] = float(value)
-        else:
-            d[key] = value
-
-    return d
-
-def makeHttpResponse(response):
-   return HttpResponse(json.dumps(response), content_type="application/json")

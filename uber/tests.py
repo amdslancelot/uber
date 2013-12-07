@@ -1,28 +1,18 @@
 #import from Django
-from django.test import TestCase
 from django.db.models import Sum, Avg
-from django.test import Client
-client = Client()
-from django.test import TestCase, RequestFactory
+from django.test import TestCase, Client, RequestFactory
+#from unittest import TestCase
 
 #import from python
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
-import time
-import datetime
-from datetime import timedelta, datetime
-import urllib2
-#from unittest import TestCase
 from decimal import *
 import json
 
 #import from App Uber
 from uber.models import TripEvent, UberBase
 import views
-
-def record_trip_event(client_id, driver_id, start_time, lat, lng, fare, distance, rating):
-    return TripEvent.objects.create(client_id=client_id, driver_id=driver_id, start_time=start_time, \
-                                    lat=lat, lng=lng, fare=fare, distance=distance, rating=rating)
+from uber_util import *
 
 def creat_events():
     record_trip_event(1, 11, 1385895912, Decimal("37.774650"), Decimal("-122.419122"), Decimal("5.0"), Decimal("5.0"), 5) #SF
