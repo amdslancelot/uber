@@ -1,17 +1,30 @@
 from django.db import models
+from decimal import *
 
 class UberBase(models.Model):
     def __unicode__(self):
-        count = 0
         result = self.__class__.__name__ + "("
+
+        result += "id=%s" % (self.id)
+
         for a in self._meta.get_all_field_names():
-            if count != 0:
-                result += " ,"
-            #result += "%s=%s" % (a, self._meta.get_field(a))
-            result += "%s=%s" % (a, getattr(self, a))
+            result += ", %s=%s" % (a, getattr(self, a))
             
-            count += 1
         return result + ")"
+
+    def dict(self):
+        d = {}
+        
+        d['id'] = self.id
+        
+        for a in self._meta.get_all_field_names():
+            v = getattr(self, a)
+            if type(v) == Decimal:
+                d[a] = float(v)
+            else:
+                d[a] = v
+
+        return d
 
     class Meta:
         abstract = True
@@ -27,3 +40,4 @@ class TripEvent(UberBase):
     fare       = models.DecimalField(max_digits=20, decimal_places=4)
     distance   = models.DecimalField(max_digits=20, decimal_places=4)
     rating     = models.IntegerField(default=0)
+
