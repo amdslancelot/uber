@@ -99,19 +99,19 @@ Extra Points:
 > main
 > manage.py
 > mysite/
->     __init__.py
->     settings.py
->     urls.py
->     wsgi.py
+> > __init__.py
+> > settings.py
+> > urls.py
+> > wsgi.py
 > README.md
 > uber/
->     city.py
->     __init__.py
->     models.py
->     tests.py
->     uber_util.py
->     urls.py
->     views.py
+> > city.py
+> > __init__.py
+> > models.py
+> > tests.py
+> > uber_util.py
+> > urls.py
+> > views.py
 
 ###############################################################
 
