@@ -23,6 +23,7 @@ REST API
 - POST uber/trip/add/
 
     doing a POST request to insert one new trip record into database
+
         form:
         {
             'client_id' : x,
