@@ -218,6 +218,10 @@ The unittest will create a temporary database in Django, generate test records a
 
 End
 ----
+An already implemented RESTful API service is running at
+```
+http://lans-h.com:8000/uber/
+```
 *Enjoy!*
   
     
