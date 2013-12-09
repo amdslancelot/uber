@@ -23,10 +23,13 @@ def addTrip(request):
     if post.has_key('client_id') and post.has_key('driver_id') and post.has_key('start_time') and \
        post.has_key('lat') and post.has_key('lng') and post.has_key('fare') and \
        post.has_key('distance') and post.has_key('rating'):
-        record = record_trip_event(post['client_id'], post['driver_id'], post['start_time'], post['lat'], \
-                          post['lng'], post['fare'], post['distance'], post['rating'])
-        response['trip'] = record.dict()
-        response['success'] = "Success"
+        try:
+            record = record_trip_event(post['client_id'], post['driver_id'], post['start_time'], post['lat'], \
+                                       post['lng'], post['fare'], post['distance'], post['rating'])
+            response['trip'] = record.dict()
+            response['success'] = "Success"
+        except:
+            response['error'] = "Something wrong when doing insertion"
     else:
         response['error'] = "Missing columns"
 
@@ -52,10 +55,13 @@ def showTrip(request, tid):
     response = {}
     
     if tid:
-        response['trip'] = TripEvent.objects.filter(id=tid)[0].dict()
-        response['success'] = "Success"
+        try:
+            response['trip'] = TripEvent.objects.filter(id=tid)[0].dict()
+            response['success'] = "Success"
+        except:
+            response['error'] = "Cannot find Trip record by id: %s" % (tid)
     else:
-        response['error'] = "Cannot find Trip record by id %s" % (tid)
+        response['error'] = "Cannot recognize id"
 
     return makeHttpResponse(response)
 

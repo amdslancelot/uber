@@ -8,24 +8,44 @@ The application is for a simple code challenge provided by Uber.
 This application is trying to build a system to allow users to access trip event records by calling RESTful API service.
 It is able to do the following things: 
 
+    
+    GET uber/trip/
+        return all the trip info
 
-    GET uber/trip/num/()
-        Get the total number of trips
+    GET uber/trip/<trip_id>/
+        return the trip record according to the given <trip_id>
+   
+   POST uber/trip/add/
+        doing a POST request to insert one new trip record into database
+        form:
+            { 
+              'client_id' : x, 
+              'driver_id' : xx, 
+              'start_time' : xxxxxxxxxx, 
+              'lat' : Decimal("xx.xxxx"), 
+              'lng' : Decimal("xxx.xxxxxx"), 
+              'fare' : Decimal("x.x"), 
+              'distance' : Decimal("x.x"), 
+              'rating' : x
+            }
+
+    GET uber/trip/num/
+        return the total number of trips
 
     GET uber/client/num/
-        Get the total number of clients
+        return the total number of clients
 
     GET uber/client/num/?finished=true
-        the total number of clients who’ve taken trips
+        return the total number of clients who’ve taken trips
 
     GET uber/trip/num_last_hour/
-        total number of trips in the last hour
+        return the total number of trips in the last hour
 
     GET uber/client/<client_id>/sum_miles/
-        total miles per client
+        return the total miles per client
 
     GET uber/city/<city_name>/avg_fare/
-        avg fare for a specific city (where a city can be defined as a square)
+        return the avg fare for a specific city (where a city can be defined as a square)
 
         * According to the doc descrption, "where a city can be defined as a square",
           here I only support the following city tags for now:
@@ -45,7 +65,9 @@ It is able to do the following things:
     GET uber/driver/<driver_id>/avg_rating/
         ●   Get the median rating for a driver
 
+
 Extra Points:
+
     It also supports giving date strings to do date range queries.
     * () means not required
 
