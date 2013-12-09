@@ -7,6 +7,8 @@ A Quick Overview of Uber Application
 The application is for a simple code challenge provided by Uber.
 This application is trying to build a system to allow users to access trip event records by calling RESTful API service.
 
+*The "record_trip_event()" function which is requested by the original document is located in uber/uber_util.py*
+
 REST API
 ----
 
