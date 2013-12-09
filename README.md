@@ -155,7 +155,8 @@ Install Guide
 $ git clone https://github.com/amdslancelot/uber.git YOUR-DIRECTORY-NAME
 ```
 3. Go to your new directory:
-```
+
+    ```
 $ cd YOUR-DIRECTORY-NAME
 ```
 4. Establish Uber database by the command below:
