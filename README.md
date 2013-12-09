@@ -183,14 +183,14 @@ uber/
 
 1. To run unittest, use this command below:
 
-   $ ./manage.py test uber
-   DATABASES NAME:  /home/lans/git_uber2/db/uber.db
-   Creating test database for alias 'default'...
-   ----------------------------------------------------------------------
-   Ran 20 tests in 0.115s
-
-   OK
-   Destroying test database for alias 'default'...
+>  $ ./manage.py test uber
+>  DATABASES NAME:  /home/lans/git_uber2/db/uber.db
+>  Creating test database for alias 'default'...
+>  ----------------------------------------------------------------------
+>  Ran 20 tests in 0.115s
+>
+>  OK
+>  Destroying test database for alias 'default'...
 
    *** The unittest will create a temporary database in Django, generate test records and test all the Django views in Uber project.
        Test code is in uber/tests.py.
