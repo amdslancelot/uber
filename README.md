@@ -16,7 +16,7 @@ REST API
 
     return all the trip info
 
-- GET  uber/trip/<trip_id>/
+- GET  uber/trip/YOUR_TRIP_ID/
 
     return the trip record according to the given <trip_id>
 
@@ -51,11 +51,11 @@ REST API
 
     return the total number of trips in the last hour
 
-- GET  uber/client/<client_id>/sum_miles/
+- GET  uber/client/YOUR_CLIENT_ID/sum_miles/
 
     return the total miles per client
 
-- GET  uber/city/<city_name>/avg_fare/
+- GET  uber/city/YOUR_CITY_NAME/avg_fare/
 
     return the avg fare for a specific city (where a city can be defined as a square)
 
@@ -104,7 +104,7 @@ It also supports giving date strings to do date range queries.
 
     ex: uber/client/num/?finished=true&starttime=20131201&endtime=20131202
 
-- GET  uber/client/<client_id>/sum_miles/(?starttime=YYYYmmdd&endtime=YYYYmmdd)
+- GET  uber/client/CLIENT_ID/sum_miles/(?starttime=YYYYmmdd&endtime=YYYYmmdd)
 
     ex: uber/client/1/sum_miles/?starttime=20131201&endtime=20131202
 
@@ -112,7 +112,7 @@ It also supports giving date strings to do date range queries.
 
     ex: uber/city/san_francisco/avg_fare/?starttime=20131201&endtime=20131202
 
-- GET  uber/driver/<driver_id>/avg_rating/(?starttime=YYYYmmdd&endtime=YYYYmmdd)
+- GET  uber/driver/DRIVER_ID/avg_rating/(?starttime=YYYYmmdd&endtime=YYYYmmdd)
 
     ex: uber/driver/11/avg_rating/?starttime=20131201&endtime=20131202
 
