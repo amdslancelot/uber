@@ -4,8 +4,8 @@
 A Quick Overview of Uber Application
 ----
 
-The application is for a simple code challenge provided by Uber.
-This application is trying to build a system to allow users to access trip event records by calling RESTful API service.
+The application is done for a simple code challenge provided by Uber.
+It is trying to build a system to allow users to access trip event records by calling RESTful API service.
 
 *The "record_trip_event()" function which is requested by the original document is located in uber/uber_util.py*
 
@@ -139,7 +139,7 @@ File System
 
 Install Guide
 ----
-1. This application is built on Django 1.6 and using it's default database SQLite 3.
+1. This application is coded in Python, built on Django 1.6 and using it's default database SQLite 3.
     
     (For information about how to install Django: https://docs.djangoproject.com/en/1.6/intro/install/)
 
