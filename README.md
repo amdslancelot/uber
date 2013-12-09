@@ -94,24 +94,24 @@ Extra Points:
 
 [File System]
 
-db/
-__init__.py
-main
-manage.py
-mysite/
-    __init__.py
-    settings.py
-    urls.py
-    wsgi.py
-README.md
-uber/
-    city.py
-    __init__.py
-    models.py
-    tests.py
-    uber_util.py
-    urls.py
-    views.py
+> db/
+> __init__.py
+> main
+> manage.py
+> mysite/
+>     __init__.py
+>     settings.py
+>     urls.py
+>     wsgi.py
+> README.md
+> uber/
+>     city.py
+>     __init__.py
+>     models.py
+>     tests.py
+>     uber_util.py
+>     urls.py
+>     views.py
 
 ###############################################################
 
@@ -138,17 +138,17 @@ uber/
 
    Your outout should be like:
 
-   Creating tables ...
-   Creating table auth_permission
-   Creating table auth_group_permissions
-   Creating table auth_group
-   Creating table auth_user_groups
-   Creating table auth_user_user_permissions
-   Creating table auth_user
-   Creating table django_content_type
-   Creating table django_session
-   Creating table django_site
-   Creating table uber_tripevent
+>   Creating tables ...
+>   Creating table auth_permission
+>   Creating table auth_group_permissions
+>   Creating table auth_group
+>   Creating table auth_user_groups
+>   Creating table auth_user_user_permissions
+>   Creating table auth_user
+>   Creating table django_content_type
+>   Creating table django_session
+>   Creating table django_site
+>   Creating table uber_tripevent
 
    You just installed Django's auth system, which means you don't have any superusers defined.
    Would you like to create one now? (yes/no):
@@ -161,11 +161,11 @@ uber/
 
    The uber_util.py is using the sample data below:
    
-   TripEvent: TripEvent(client_id=1 ,distance=5 ,driver_id=11 ,fare=5 ,id=1 ,lat=37.77465 ,lng=-122.419122 ,rating=5 ,start_time=1385895912)
-   TripEvent: TripEvent(client_id=1 ,distance=5 ,driver_id=12 ,fare=3 ,id=2 ,lat=37.790184 ,lng=-122.429845 ,rating=3 ,start_time=1385895926)
-   TripEvent: TripEvent(client_id=2 ,distance=6 ,driver_id=11 ,fare=10 ,id=3 ,lat=37.68776 ,lng=-122.486598 ,rating=4 ,start_time=1385895927)
-   TripEvent: TripEvent(client_id=3 ,distance=7 ,driver_id=12 ,fare=11 ,id=4 ,lat=37.637072 ,lng=-122.418277 ,rating=4 ,start_time=1385895928)
-   TripEvent: TripEvent(client_id=4 ,distance=8 ,driver_id=12 ,fare=12 ,id=5 ,lat=37.5688 ,lng=-122.316336 ,rating=5 ,start_time=1417850394)
+>   TripEvent: TripEvent(client_id=1 ,distance=5 ,driver_id=11 ,fare=5 ,id=1 ,lat=37.77465 ,lng=-122.419122 ,rating=5 ,start_time=1385895912)
+>   TripEvent: TripEvent(client_id=1 ,distance=5 ,driver_id=12 ,fare=3 ,id=2 ,lat=37.790184 ,lng=-122.429845 ,rating=3 ,start_time=1385895926)
+>   TripEvent: TripEvent(client_id=2 ,distance=6 ,driver_id=11 ,fare=10 ,id=3 ,lat=37.68776 ,lng=-122.486598 ,rating=4 ,start_time=1385895927)
+>   TripEvent: TripEvent(client_id=3 ,distance=7 ,driver_id=12 ,fare=11 ,id=4 ,lat=37.637072 ,lng=-122.418277 ,rating=4 ,start_time=1385895928)
+>   TripEvent: TripEvent(client_id=4 ,distance=8 ,driver_id=12 ,fare=12 ,id=5 ,lat=37.5688 ,lng=-122.316336 ,rating=5 ,start_time=1417850394)
 
    ***The record_trip_event() function is located in uber/uber_util.py
       If you want to insert more records, feel free to use it.
